@@ -1,0 +1,41 @@
+<!-- This is a simple example of using the Fetch API in JavaScript.
+When you click the button, it sends a request to an API, gets JSON data, and displays it inside a <div> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <div id="container">
+    </div>
+    <button onclick="getAnimals()">get animals</button>
+    <script>
+        function getAnimals() {
+            fetch("https://fakerapi.it/api/v1/persons")
+                .then(async function(response) {
+                    const jsonData = await response.json();
+                    document.getElementById("container").innerHTML = JSON.stringify(jsonData.data);
+                });
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+| Concept                     | Purpose                                        |
+| --------------------------- | ---------------------------------------------- |
+| `fetch()`                   | Sends an HTTP request to an API                |
+| `.then()`                   | Executes after the request completes           |
+| `async`                     | Allows the use of `await` inside the function  |
+| `await`                     | Waits until `response.json()` finishes         |
+| `response.json()`           | Converts the response into a JavaScript object |
+| `document.getElementById()` | Selects an HTML element                        |
+| `innerHTML`                 | Displays content inside an element             |
+| `JSON.stringify()`          | Converts an object to a string for display     | -->
