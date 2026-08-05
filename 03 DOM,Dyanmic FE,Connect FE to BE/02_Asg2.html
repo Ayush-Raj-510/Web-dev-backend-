@@ -1,0 +1,48 @@
+<!-- // Create a full - stack web application where the frontend collects the Principal(P), Rate of Interest(R), and Time(T) 
+// from the user and sends these values
+// to a backend server through an HTTP request.The backend should calculate both the Simple Interest(SI) and Compound Interest(CI),
+// then send the calculated results back to the frontend.Finally, the frontend should display the
+// Simple Interest and Compound Interest dynamically on the webpage without reloading the page. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interest Calculator</title>
+</head>
+<body>
+    <h2>Interest Calculator</h2>
+
+    <input type="number" id="principal" placeholder="Enter Principal"><br><br>
+    <input type="number" id="rate" placeholder="Enter Rate"><br><br>
+    <input type="number" id="time" placeholder="Enter Time"><br><br>
+    <button onclick="calculateInterest()">Calculate</button>
+
+    <h3 id="si"></h3>
+    <h3 id="ci"></h3>
+
+    <script>
+        async function calculateInterest() {
+            const principal =document.getElementById("principal").value;
+            const rate =document.getElementById("rate").value;
+            const time =document.getElementById("time").value;
+            const response = await fetch("/calculate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    principal,
+                    rate,
+                    time
+                })
+            });
+            const data = await response.json();
+            document.getElementById("si").innerHTML ="Simple Interest : " + data.simpleInterest;
+            document.getElementById("ci").innerHTML ="Compound Interest : " + data.compoundInterest;
+
+        }
+    </script>
+
+</body>
+
+</html>
