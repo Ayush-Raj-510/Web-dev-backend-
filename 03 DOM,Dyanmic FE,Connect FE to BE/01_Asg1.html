@@ -1,0 +1,26 @@
+<!-- Create a web page where a user enters two numbers, clicks the "Calculate Sum" button,
+and the application displays the sum of those two numbers without refreshing the page. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function populatebtn(){
+        const a=document.getElementById("FirstNum").value
+        const b=document.getElementById("SecondNum").value
+        const element=document.getElementById("finalsum")
+        element.innerHTML=parseInt(a)+parseInt(b)
+    }
+</script>
+<body>
+    <input type="text" id="FirstNum" placeholder="Enter First Number">
+    <input type="text" id="SecondNum" placeholder="Enter Second Number">
+    <button id="submitBtn" onclick="populatebtn()">Calculate Sum</button>
+    <div id="finalsum"></div>
+</body>
+</html>
